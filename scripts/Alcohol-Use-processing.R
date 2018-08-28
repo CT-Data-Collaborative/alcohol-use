@@ -146,6 +146,9 @@ test$`Substate Region`[region_rows] <- gsub("$", " Region", test$`Substate Regio
 #rename US rows
 test$`Substate Region` <- gsub("Total ", "", test$`Substate Region`)
 
+#assign US MOE for 2004-2006 to zero
+test[test$`Substate Region` == "United States" & is.na(test)] <- 0
+
 #Calculate MOE from upper and lower bounds
 test[] <- lapply(test, gsub, pattern = "\\(", replacement = "")
 test[] <- lapply(test, gsub, pattern = "\\)", replacement = "")
